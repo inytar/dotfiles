@@ -1,0 +1,20 @@
+[core]
+	editor = vim
+[alias]
+        hist = log --pretty=format:\"%C(auto)%h %C(cyan)%ad%C(reset)%C(auto)%d %C(reset)%s %C(reset)[%an]\" --graph --date=short --color
+	merge-master = !CURRENT=$(git symbolic-ref --short HEAD) && git checkout master -q && git pull --ff-only -q && git checkout ${1-$CURRENT} -q && git rebase master ${1-$CURRENT} && git checkout master -q && git merge -e --no-ff ${1-$CURRENT}
+	clone-into =!git remote add origin ${1} && git pull origin master  && git push -u origin master
+[push]
+	default = simple
+[user]
+	name = inytar
+	email = pietpiet@fastmail.net
+	signingkey = F3FD6EA89CE6D2946EA9059B66711A6B6D0F8349
+[includeIf "gitdir:~/Wooga/"]
+	path = ~/Wooga/.gitconfig
+[gpg]
+	program = gpg2
+[url "ssh://git@github.com/"]
+	pushInsteadOf = https://github.com/
+[diff "sopsdiffer"]
+	textconv = sops -d

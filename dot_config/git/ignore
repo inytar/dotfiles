@@ -1,0 +1,24 @@
+## vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+
+## ipython notebooks
+.ipynb_checkpoints/
+
+## python
+*.pyc
+__pycache__
+
+## Linux
+*~
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# used to make vim go to the correct virtualenv
+.venv
+
+## intelij
+*.iml
