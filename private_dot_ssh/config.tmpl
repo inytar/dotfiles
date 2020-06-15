@@ -1,0 +1,6 @@
+{{- if eq .email "pieter.mulder@wooga.net" -}}
+Host *
+	AddKeysToAgent yes
+	UseKeychain yes
+	IdentityFile ~/.ssh/id_rsa
+{{- end }}
