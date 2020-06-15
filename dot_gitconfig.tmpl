@@ -7,8 +7,8 @@
 [push]
 	default = simple
 [user]
-	name = inytar
-	email = pietpiet@fastmail.net
+	name = "{{ .user }}"
+	email = "{{ .email }}"
 	signingkey = F3FD6EA89CE6D2946EA9059B66711A6B6D0F8349
 [includeIf "gitdir:~/Wooga/"]
 	path = ~/Wooga/.gitconfig
