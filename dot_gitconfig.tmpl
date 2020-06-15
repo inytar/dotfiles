@@ -10,11 +10,11 @@
 	name = "{{ .user }}"
 	email = "{{ .email }}"
 	signingkey = F3FD6EA89CE6D2946EA9059B66711A6B6D0F8349
-[includeIf "gitdir:~/Wooga/"]
-	path = ~/Wooga/.gitconfig
 [gpg]
 	program = gpg2
 [url "ssh://git@github.com/"]
 	pushInsteadOf = https://github.com/
+[url "ssh://git@github.com/wooga"]
+	insteadOf = https://github.com/wooga
 [diff "sopsdiffer"]
 	textconv = sops -d
