@@ -5,6 +5,6 @@
 .config/environment.d
 {{- else if ne .chezmoi.os "darwin" }}
 {{- end }}
-{{- if ne .email "pieter.mulder@wooga.net }}
+{{- if ne .email "pieter.mulder@wooga.net" }}
 # Files to ignore if not working on Company account.
 {{- end }}
