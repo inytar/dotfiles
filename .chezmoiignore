@@ -1,0 +1,7 @@
+{{- if eq .chezmoi.os "darwin" }}
+.pam_environment
+.config/systemd
+.config/autostart
+.config/environment.d
+{{- else if eq .chezmoi.os "linux" }}
+{{- end }}
