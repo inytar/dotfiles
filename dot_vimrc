@@ -24,6 +24,9 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+" Nicely behaving backspace
+set backspace=indent,eol,start
+
 " Visual Setting
 set number
 
