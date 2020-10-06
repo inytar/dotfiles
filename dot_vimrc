@@ -15,6 +15,15 @@ Plug 'ap/vim-buftabline'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
 Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
+" python
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'vim-python/python-syntax'
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -27,12 +36,24 @@ endif
 " Nicely behaving backspace
 set backspace=indent,eol,start
 
+
 " Visual Setting
 set number
 
 " Encoding
 set ttyfast
 set binary
+
+" Set tabs & indents
+set autoindent
+" Improve tabbing.
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
 
 " Enable file type detection.
 filetype plugin indent on
@@ -46,5 +67,7 @@ if (has("termguicolors"))
 endif
 
 set hidden
+
+" Move between tabs
 nnoremap <C-N> :bnext<CR>
 nnoremap <C-P> :bprev<CR>
