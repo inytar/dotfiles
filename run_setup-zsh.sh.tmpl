@@ -4,13 +4,13 @@
 ZSH=$(which zsh 2>/dev/null || /bin/true)
 if [ ! -e "$ZSH" ]
 then
-	echo "zsh isn't installed, install or reboot."
-	exit 1
+	echo "zsh isn't installed, install or reboot. And rerun chezmoi."
+	exit 0
 fi
 
 # Current shell
 SHELL=$(grep {{ .user }} /etc/passwd | awk -F: '{ print $NF }')
-if [ "$SHELL" -eq "$ZSH" ]
+if [ "$SHELL" = "$ZSH" ]
 then
 	exit 0
 fi
