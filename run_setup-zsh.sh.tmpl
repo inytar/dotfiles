@@ -9,8 +9,8 @@ then
 fi
 
 # Current shell
-SHELL=$(grep {{ .user }} /etc/passwd | awk -F: '{ print $NF }')
-if [ "$SHELL" = "$ZSH" ]
+CURRENT_SHELL=$(grep {{ .user }} /etc/passwd | awk -F: '{ print $NF }')
+if [ "$CURRENT_SHELL" = "$ZSH" ]
 then
 	exit 0
 fi
