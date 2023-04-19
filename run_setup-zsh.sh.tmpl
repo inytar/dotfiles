@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Fail if zsh isn't installed
+ZSH=$(which zsh 2>/dev/null || /bin/true)
+if [ ! -e "$ZSH" ]
+then
+	echo "zsh isn't installed, install or reboot."
+	exit 1
+fi
+
+# Current shell
+SHELL=$(grep {{ .user }} /etc/passwd | awk -F: '{ print $NF }')
+if [ "$SHELL" -eq "$ZSH" ]
+then
+	exit 0
+fi
+
+sudo usermod {{ .user }} -s $ZSH
