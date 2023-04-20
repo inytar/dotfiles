@@ -17,6 +17,12 @@ then
 fi
 export PATH
 
+if ! [[ "$FPATH" =~ "$HOME/.local/share/zsh/site-functions:" ]]
+then
+    FPATH="$HOME/.local/share/zsh/site-functions:$FPATH"
+fi
+export FPATH
+
 {{- if eq .email "pieter.mulder@wooga.net" }}
 . $(brew --prefix asdf)/asdf.sh
 export GOPATH="${HOME}/go"
