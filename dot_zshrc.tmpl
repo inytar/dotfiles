@@ -11,6 +11,12 @@ zstyle :compinstall filename '{{ .chezmoi.homeDir }}/.zshrc'
 
 autoload -Uz compinit; compinit
 
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
 {{- if eq .email "pieter.mulder@wooga.net" }}
 . $(brew --prefix asdf)/asdf.sh
 export GOPATH="${HOME}/go"
