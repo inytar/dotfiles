@@ -14,31 +14,8 @@ autoload -Uz compinit; compinit
 {{- if eq .email "pieter.mulder@wooga.net" }}
 . $(brew --prefix asdf)/asdf.sh
 export GOPATH="${HOME}/go"
-{{ (index (lastpassRaw "DS Environment Variables") 0).note }}
-export EXASOL_USR={{ (index (lastpass "Exasol readonly") 0).note.username }}
-export EXASOL_PW={{ (index (lastpass "Exasol readonly") 0).note.password }}
-export JFROG_BASIC_AUTH={{ (index (lastpassRaw "JFROG_BASIC_AUTH") 0).note }}
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 {{- end }}
