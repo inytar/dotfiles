@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.osRelease.variantID "silverblue" -}}
+#!/bin/sh
+
+rpm-ostree install --idempotent vim zsh
+{{- end }}

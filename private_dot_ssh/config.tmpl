@@ -1,6 +1,6 @@
-{{- if eq .email "pieter.mulder@wooga.net" -}}
-Host *
-	AddKeysToAgent yes
-	UseKeychain yes
-	IdentityFile ~/.ssh/id_rsa
+{{ if eq .email "pietpiet@fastmail.net" -}}
+Host homeassistant
+	HostName homeassistant.local
+	User root
+	ForwardAgent yes
 {{- end }}

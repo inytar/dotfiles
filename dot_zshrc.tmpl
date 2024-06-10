@@ -3,8 +3,11 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt autocd beep extendedglob nomatch notify
 bindkey -e
+{{- if eq .chezmoi.os "linux" }}
+export EDITOR=/usr/bin/vim
+{{- end }}
 
-zstyle :compinstall filename '{{ .chezmoi.homedir }}/.zshrc'
+zstyle :compinstall filename '{{ .chezmoi.homeDir }}/.zshrc'
 
 autoload -Uz compinit; compinit
 
