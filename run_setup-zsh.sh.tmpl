@@ -1,3 +1,4 @@
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.variantID "silverblue") -}}
 #!/bin/sh
 
 # Fail if zsh isn't installed
@@ -16,3 +17,4 @@ then
 fi
 
 sudo usermod {{ .user }} -s $ZSH
+{{- end }}
