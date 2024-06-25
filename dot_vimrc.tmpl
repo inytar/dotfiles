@@ -23,7 +23,12 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-python/python-syntax'
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
+{{- if eq .email "pieter.mulder@wooga.net" }}
+" AI
+Plug 'github/copilot.vim'
+{{- end }}
 call plug#end()
 
 " Switch syntax highlighting on, when the terminal has colors

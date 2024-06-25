@@ -26,6 +26,8 @@ export PATH
 {{- if eq .email "pieter.mulder@wooga.net" }}
 . $(brew --prefix asdf)/asdf.sh
 export GOPATH="${HOME}/go"
-{{ (index (lastpassRaw "DS Environment Variables") 0).note }}
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 {{- end }}
