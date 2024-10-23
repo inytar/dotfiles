@@ -18,6 +18,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
+Plug 'Yggdroot/hiPairs'
+Plug 'Yggdroot/indentLine'
 " python
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-python/python-syntax'
@@ -54,12 +56,13 @@ set autoindent
 " Improve tabbing.
 filetype plugin indent on
 set smarttab
-" show existing tab with 8 spaces width
-set tabstop=8 softtabstop=0
+" show existing tab with 4 spaces width
+set tabstop=4 softtabstop=0
 " when indenting with '>', use 4 spaces width
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+set list lcs=tab:\|\
 
 " Enable file type detection.
 filetype plugin indent on
