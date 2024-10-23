@@ -14,7 +14,7 @@ zstyle :compinstall filename '{{ .chezmoi.homeDir }}/.zshrc'
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 . $(brew --prefix asdf)/libexec/asdf.sh
 export GOPATH="${HOME}/go"
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+export PATH="/usr/local/opt/gnu-getopt/bin:/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
