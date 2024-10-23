@@ -49,16 +49,17 @@ set number
 set ttyfast
 set binary
 
-" " Set tabs & indents
-" set autoindent
-" " Improve tabbing.
-" filetype plugin indent on
-" " show existing tab with 4 spaces width
-" set tabstop=4
-" " when indenting with '>', use 4 spaces width
-" set shiftwidth=4
-" " On pressing tab, insert 4 spaces
-" set expandtab
+" Set tabs & indents
+set autoindent
+" Improve tabbing.
+filetype plugin indent on
+set smarttab
+" show existing tab with 8 spaces width
+set tabstop=8 softtabstop=0
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
 
 " Enable file type detection.
 filetype plugin indent on
