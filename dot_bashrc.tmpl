@@ -23,5 +23,5 @@ export EDITOR=/usr/bin/vim
 {{- end }}
 
 # autocomplete chezmoi
-export COMPLETE_DIR="$HOME/.config/bash/complete"
-[ -s "$COMPLETE_DIR/chezmoi.bash" ] && \. "$COMPLETE_DIR/chezmoi.bash"
+export COMPLETE_DIR="$HOME/.local/share/bash-completion"
+[ -s "$COMPLETE_DIR/chezmoi" ] && \. "$COMPLETE_DIR/chezmoi"
