@@ -1,7 +1,5 @@
 {{- if ne .chezmoi.os "linux" }}
 .pam_environment
-.config/systemd
-.config/autostart
 .config/environment.d
 {{- else if ne .chezmoi.os "darwin" }}
 {{- end }}

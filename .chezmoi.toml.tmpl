@@ -1,5 +1,9 @@
-{{- $user := promptString "user" -}}
-{{- $email := promptString "email" -}}
+{{- $user := promptStringOnce . "user" "Local Username" -}}
+{{- $email := promptStringOnce . "email" "Email address" -}}
 [data]
     email = "{{ $email }}"
     user = "{{ $user }}"
+[edit]
+    command = "vim"
+[diff]
+    exclude = ["scripts", "externals"]
