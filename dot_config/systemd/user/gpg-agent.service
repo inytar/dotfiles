@@ -1,3 +1,0 @@
-[Service]
-ExecStart=/usr/bin/gpg-agent --supervised --enable-ssh-support
-ExecReload=/usr/bin/gpgconf --reload gpg-agent
