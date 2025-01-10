@@ -1,5 +1,6 @@
 {{- if ne .chezmoi.os "linux" }}
 .config/environment.d
+.gnupg
 {{- else if ne .chezmoi.os "darwin" }}
 {{- end }}
 {{- if ne .email "pieter.mulder@wooga.net" }}
