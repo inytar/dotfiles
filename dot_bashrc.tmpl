@@ -19,7 +19,7 @@ export PATH
 
 {{- if eq .chezmoi.os "linux" }}
 # default to vim
-export EDITOR=/usr/bin/vim
+export EDITOR={{ .chezmoi.config.edit.command }}
 {{- end }}
 
 # autocomplete chezmoi

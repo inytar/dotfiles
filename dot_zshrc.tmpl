@@ -3,9 +3,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt autocd beep extendedglob nomatch notify
 bindkey -e
-{{- if eq .chezmoi.os "linux" }}
-export EDITOR=/usr/bin/vim
-{{- end }}
+export EDITOR={{ .chezmoi.config.edit.command }}
 
 zstyle :compinstall filename '{{ .chezmoi.homeDir }}/.zshrc'
 
@@ -30,4 +28,10 @@ export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+{{- end }}
+
+{{- if eq .chezmoi.os "linux" }}
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{- else if eq .chezmoi.os "darwin" }}
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 {{- end }}
