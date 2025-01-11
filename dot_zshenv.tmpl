@@ -3,3 +3,7 @@ fpath=($HOME/.local/share/zsh/site-functions $fpath)
 
 export -TU PATH path
 path=($HOME/.local/bin $HOME/bin $path)
+
+{{- if eq .chezmoi.os "linux" }}
+SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
+{{- end }}

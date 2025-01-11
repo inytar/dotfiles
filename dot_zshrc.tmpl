@@ -21,10 +21,14 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 {{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+_share=/usr/share
 {{- else if eq .chezmoi.os "darwin" }}
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+_share=$(brew --prefix)/share
 {{- end }}
+if [ -f ${_share}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source ${_share}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+unset _share
 
 # User specific aliases and functions
 if [ -d {{ .chezmoi.homeDir }}/.zshrc.d ]; then
@@ -33,6 +37,7 @@ if [ -d {{ .chezmoi.homeDir }}/.zshrc.d ]; then
       . "$rc"
     fi
   done
+  unset rc
 fi
 
 autoload -Uz compinit; compinit
