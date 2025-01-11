@@ -7,19 +7,8 @@ export EDITOR={{ .chezmoi.config.edit.command }}
 
 zstyle :compinstall filename '{{ .chezmoi.homeDir }}/.zshrc'
 
-if ! [[ "$FPATH" =~ "$HOME/.local/share/zsh/site-functions:" ]]
-then
-    FPATH="$HOME/.local/share/zsh/site-functions:$FPATH"
-fi
-export FPATH
-
 autoload -Uz compinit; compinit
-
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
+autoload -Uz promptinit; promptinit
 
 {{- if eq .email "pieter.mulder@wooga.net" }}
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -37,6 +26,13 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 {{- end }}
 
-. {{ .chezmoi.homeDir}}/.zshrc.extras
+# User specific aliases and functions
+if [ -d {{ .chezmoi.homeDir }}/.zshrc.d ]; then
+  for rc in {{ .chezmoi.homeDir }}/.zshrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
+fi
 
 autoload -Uz compinit; compinit
