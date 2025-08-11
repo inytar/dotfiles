@@ -11,6 +11,7 @@ autoload -Uz compinit; compinit
 autoload -Uz promptinit; promptinit
 
 {{- if eq .email "pieter.mulder@wooga.net" }}
+eval "$(/opt/homebrew/bin/brew shellenv)"
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 . $(brew --prefix asdf)/libexec/asdf.sh
 export GOPATH="${HOME}/go"
