@@ -1,8 +1,6 @@
 {{- if ne .chezmoi.os "linux" }}
-.pam_environment
-.config/systemd
-.config/autostart
 .config/environment.d
+.gnupg
 {{- else if ne .chezmoi.os "darwin" }}
 {{- end }}
 {{- if ne .email "pieter.mulder@wooga.net" }}

@@ -3,26 +3,12 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt autocd beep extendedglob nomatch notify
 bindkey -e
-
-{{- if eq .chezmoi.os "linux" }}
-export EDITOR=/usr/bin/vim
-{{- end }}
+export EDITOR={{ .chezmoi.config.edit.command }}
 
 zstyle :compinstall filename '{{ .chezmoi.homeDir }}/.zshrc'
 
-if ! [[ "$FPATH" =~ "$HOME/.local/share/zsh/site-functions:" ]]
-then
-    FPATH="$HOME/.local/share/zsh/site-functions:$FPATH"
-fi
-export FPATH
-
 autoload -Uz compinit; compinit
-
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
+autoload -Uz promptinit; promptinit
 
 {{- if eq .email "pieter.mulder@wooga.net" }}
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -34,6 +20,24 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 {{- end }}
 
-. {{ .chezmoi.homeDir}}/.zshrc.extras
+{{- if eq .chezmoi.os "linux" }}
+_share=/usr/share
+{{- else if eq .chezmoi.os "darwin" }}
+_share=$(brew --prefix)/share
+{{- end }}
+if [ -f ${_share}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source ${_share}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+unset _share
+
+# User specific aliases and functions
+if [ -d {{ .chezmoi.homeDir }}/.zshrc.d ]; then
+  for rc in {{ .chezmoi.homeDir }}/.zshrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
+  unset rc
+fi
 
 autoload -Uz compinit; compinit
