@@ -6,6 +6,8 @@ rpm-ostree install --apply-live --idempotent vim zsh gopass zsh-syntax-highlight
 {{ if eq .chezmoi.os "darwin" }}
 
 brew bundle --file=/dev/stdin <<EOF
+brew "vim"
+cask "iterm2"
 brew "git"
 brew "zsh-syntax-highlighting"
 EOF

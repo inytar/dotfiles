@@ -2,3 +2,13 @@
     type = "file"
     url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     refreshPeriod = "672h"
+{{- if eq .chezmoi.os "darwin" }}
+["Library/Fonts/Meslo"]
+{{- else }}
+[".local/share/fonts/Meslo"]
+# TODO: Run fc-cache after installing the font
+{{- end }}
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.tar.xz"
+    refreshPeriod = "672h"
+    extact = true

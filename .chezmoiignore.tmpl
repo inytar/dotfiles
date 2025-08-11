@@ -1,6 +1,7 @@
 {{- if ne .chezmoi.os "linux" }}
 .config/environment.d
 .gnupg
+.config/iterm2
 {{- else if ne .chezmoi.os "darwin" }}
 {{- end }}
 {{- if ne .email "pieter.mulder@wooga.net" }}
