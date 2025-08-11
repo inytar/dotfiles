@@ -3,6 +3,8 @@
 .gnupg
 .config/iterm2
 {{- else if ne .chezmoi.os "darwin" }}
+.local/share/zsh/site-functions/_chezmoi
+.local/share/bash-completion/chezmoi
 {{- end }}
 {{- if ne .email "pieter.mulder@wooga.net" }}
 # Files to ignore if not working on Company account.

@@ -1,6 +1,6 @@
 export -TU FPATH fpath
 {{- if eq .chezmoi.os "darwin" }}
-fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 {{- else }}
 fpath=($HOME/.local/share/zsh/site-functions $fpath)
 {{- end }}
