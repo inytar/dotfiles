@@ -1,11 +1,11 @@
 #!/bin/sh
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.variantID "silverblue") -}}
 
-rpm-ostree install --idempotent vim zsh gopass zsh-syntax-highlighting
+rpm-ostree install --apply-live --idempotent vim zsh gopass zsh-syntax-highlighting
 {{ end -}}
 {{ if eq .chezmoi.os "darwin" }}
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 brew "git"
 brew "zsh-syntax-highlighting"
 EOF
