@@ -6,8 +6,18 @@ fpath=($HOME/.local/share/zsh/site-functions $fpath)
 {{- end }}
 
 export -TU PATH path
+{{- if eq .chezmoi.os "darwin" }}
+path=("/usr/local/opt/gnu-getopt/bin" "/opt/homebrew/opt/make/libexec/gnubin" /opt/homebrew/bin /opt/homebrew/sbin $path)
+{{- end }}
 path=($HOME/.local/bin $HOME/bin $path)
 
-{{- if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.os "darwin" }}
+# Homebrew settings
+HOMEBREW_PREFIX="/opt/homebrew"
+HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+HOMEBREW_REPOSITORY="/opt/homebrew"
+INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+{{- else }}
 SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 {{- end }}
+ZIM_HOME=$HOME/.local/share/zim

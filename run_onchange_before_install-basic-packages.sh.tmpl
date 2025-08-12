@@ -1,7 +1,7 @@
 #!/bin/sh
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.variantID "silverblue") -}}
 
-rpm-ostree install --apply-live --idempotent vim zsh gopass zsh-syntax-highlighting
+rpm-ostree install --apply-live --idempotent vim zsh git gopass fzf ripgrep
 {{ end -}}
 {{ if eq .chezmoi.os "darwin" }}
 
@@ -9,6 +9,8 @@ brew bundle --file=/dev/stdin <<EOF
 brew "vim"
 cask "iterm2"
 brew "git"
-brew "zsh-syntax-highlighting"
+brew "fzf"
+brew "ripgrep"
+brew "oh-my-posh"
 EOF
 {{ end -}}
