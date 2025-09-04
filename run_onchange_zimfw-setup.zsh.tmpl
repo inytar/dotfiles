@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# zimrc hash: {{ include (joinPath .chezmoi.homeDir ".zimrc") | sha256sum }}
+
 export ZIM_HOME=$HOME/.local/share/zim
 source ~/.local/share/zim/zimfw.zsh init
 zimfw uninstall
