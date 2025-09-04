@@ -2,6 +2,7 @@
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.variantID "silverblue") -}}
 
 rpm-ostree install --apply-live --idempotent vim zsh git gopass fzf ripgrep
+curl -s https://ohmyposh.dev/install.sh | bash -s
 {{ end -}}
 {{ if eq .chezmoi.os "darwin" }}
 
