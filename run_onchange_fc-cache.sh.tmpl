@@ -1,0 +1,12 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+
+{{ range $font := .nerdFonts -}}
+# Hash for all {{ $font }} font files
+{{ range (glob (joinPath $.chezmoi.homeDir ".local/share/fonts" $font "*")) -}}
+# {{ base . }} > hash {{ include . | sha256sum }}
+{{ end -}}
+fc-cache -fv .local/share/fonts/{{ $font }}
+{{ end -}}
+
+{{ end -}}
