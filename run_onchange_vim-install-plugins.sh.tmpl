@@ -1,0 +1,4 @@
+#! /bin/sh
+
+# vimrc hash: {{ include (joinPath .chezmoi.homeDir ".vimrc") | sha256sum }}
+vim +PlugInstall +qall
