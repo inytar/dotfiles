@@ -11,14 +11,16 @@
 [user]
 	name = "{{ .user }}"
 	email = "{{ .email }}"
+{{ if eq .email "pietpiet@fastmail.net" -}}
 	signingkey = F3FD6EA89CE6D2946EA9059B66711A6B6D0F8349
-[gpg]
-	program = gpg2
+{{- end }}
 [url "ssh://git@github.com/"]
 	pushInsteadOf = https://github.com/
 [url "ssh://git@github.com/wooga"]
 	insteadOf = https://github.com/wooga
 [diff "sopsdiffer"]
 	textconv = sops -d
+[diff "lockdiff"]
+	textconv = lockdiff
 [init]
 	defaultBranch = main

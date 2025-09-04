@@ -2,3 +2,31 @@
     type = "file"
     url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     refreshPeriod = "672h"
+{{- range $font := .nerdFonts }}
+{{- if eq $.chezmoi.os "darwin" }}
+["Library/Fonts/{{ $font }}"]
+{{- else }}
+[".local/share/fonts/{{ $font }}"]
+{{- end }}
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/{{ $font }}.tar.xz"
+    refreshPeriod = "672h"
+    extact = true
+{{- end }}
+{{- if eq .chezmoi.os "darwin" }}
+[".iterm2_shell_integration.zsh"]
+    type = "file"
+    url = "https://iterm2.com/shell_integration/zsh"
+    refreshPeriod = "672h"
+[".iterm2"]
+    type = "archive"
+    url = "https://github.com/gnachman/iTerm2-shell-integration/archive/refs/heads/main.zip"
+    include = ["iTerm2-shell-integration-main/utilities/*"]
+    stripComponents = 2
+    extact = true
+    refreshPeriod = "672h"
+{{- end }}
+[".local/share/zim/zimfw.zsh"]
+    type = "file"
+    url = "https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh"
+    refreshPeriod = "672h"

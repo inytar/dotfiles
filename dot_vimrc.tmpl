@@ -57,7 +57,7 @@ set tabstop=4 softtabstop=0
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
-set list lcs=tab:\|\
+set list lcs=tab:\|\ 
 
 " Enable file type detection.
 filetype plugin indent on
@@ -75,3 +75,25 @@ set hidden
 " Move between tabs
 nnoremap <C-N> :bnext<CR>
 nnoremap <C-P> :bprev<CR>
+
+{{- if eq .email "pieter.mulder@wooga.net" }}
+" Set Copilot workspace as git root
+function! SetGitWorkspace()
+    let l:git_root = system('git rev-parse --show-toplevel')
+    if !empty(l:git_root)
+        let l:git_root = substitute(l:git_root, '\n', '', 'g')
+        let g:copilot_workspace_folders = [l:git_root]
+    else
+        let g:copilot_workspace_folders = [getcwd()]
+    endif
+endfunction
+
+autocmd BufEnter * call SetGitWorkspace()
+
+" Copilot mappings
+imap <C-h> <Plug>(copilot-dismiss)
+imap <C-K> <Plug>(copilot-next)
+imap <C-J> <Plug>(copilot-previous)
+imap <C-L> <Plug>(copilot-accept-word)
+imap <C-;> <Plug>(copilot-accept-line)
+{{- end }}
