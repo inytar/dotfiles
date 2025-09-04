@@ -1,7 +1,7 @@
 #!/bin/sh
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.variantID "silverblue") -}}
 
-rpm-ostree install --apply-live --idempotent vim zsh git gopass fzf ripgrep
+rpm-ostree install --apply-live --idempotent vim zsh git gopass fzf ripgrep direnv
 curl -s https://ohmyposh.dev/install.sh | bash -s
 {{ end -}}
 {{ if eq .chezmoi.os "darwin" }}
@@ -13,5 +13,6 @@ brew "git"
 brew "fzf"
 brew "ripgrep"
 brew "oh-my-posh"
+brew "direnv"
 EOF
 {{ end -}}

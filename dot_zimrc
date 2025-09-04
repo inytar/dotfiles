@@ -10,6 +10,7 @@ zmodule termtitle
 zmodule git
 zmodule fzf
 zmodule archive
+zmodule direnv
 
 # Add custom modules here
 zmodule romkatv/zsh-defer -d
