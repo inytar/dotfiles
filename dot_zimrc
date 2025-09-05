@@ -15,6 +15,9 @@ zmodule direnv
 # Add custom modules here
 zmodule romkatv/zsh-defer -d
 zmodule mroth/evalcache
+zmodule joke/zim-chezmoi
+zmodule joke/zim-k9s
+zmodule Aloxaf/fzf-tab
 
 # Additional completion definitions for Zsh.
 zmodule zsh-users/zsh-completions --fpath src
