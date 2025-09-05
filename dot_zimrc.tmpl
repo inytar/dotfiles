@@ -1,4 +1,3 @@
-
 # Sets sane Zsh built-in environment options.
 zmodule environment
 # Applies correct bindkeys for input events.
@@ -16,8 +15,12 @@ zmodule direnv
 zmodule romkatv/zsh-defer -d
 zmodule mroth/evalcache
 zmodule joke/zim-chezmoi
-zmodule joke/zim-k9s
 zmodule Aloxaf/fzf-tab
+{{- if eq .chezmoi.os "Linux" }}
+zmodule joke/zim-gopass
+{{- else }}
+zmodule joke/zim-k9s
+{{- end }}
 
 # Additional completion definitions for Zsh.
 zmodule zsh-users/zsh-completions --fpath src
