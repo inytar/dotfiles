@@ -1,4 +1,6 @@
 #!/bin/zsh
+set -euo pipefail
+IFS=$'\n\t'
 
 # zimrc hash: {{ include (joinPath .chezmoi.homeDir ".zimrc") | sha256sum }}
 

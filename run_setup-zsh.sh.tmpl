@@ -1,5 +1,7 @@
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.variantID "silverblue") -}}
-#!/bin/sh
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 # Fail if zsh isn't installed
 ZSH=$(which zsh 2>/dev/null || /bin/true)

@@ -1,7 +1,10 @@
-#!/bin/sh
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.variantID "silverblue") -}}
 
-rpm-ostree install --apply-live --idempotent vim zsh git gopass gopass-jsonapi fzf ripgrep direnv
+rpm-ostree install --assumeyes --apply-live --idempotent vim zsh git gopass gopass-jsonapi fzf ripgrep direnv
 curl -s https://ohmyposh.dev/install.sh | bash -s
 {{ end -}}
 {{ if eq .chezmoi.os "darwin" }}

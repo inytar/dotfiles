@@ -1,5 +1,7 @@
 {{ if eq .chezmoi.os "darwin" -}}
-#!/bin/sh
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 # TODO: Only run if iTerm2 preferences are changed.
 # Specify the iTerm2 preferences directory
