@@ -31,7 +31,9 @@ alias {{ . | base }}=${HOME}/{{ . }}
 {{- end }}
 {{- if eq .email "pieter.mulder@wooga.net" }}
 export NODE_EXTRA_CA_CERTS="/Library/Application Support/Playtika Corp. IT/Certs/Playtika-SCA.pem"
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh
+source ${HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
+source ${HOMEBREW_PREFIX}/opt/chruby/share/chruby/auto.sh
 export GOPATH="${HOME}/go"
 {{- end }}
 
