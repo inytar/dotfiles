@@ -9,7 +9,7 @@ export -TU PATH path
 {{- if eq .chezmoi.os "darwin" }}
 path=("/usr/local/opt/gnu-getopt/bin" "/opt/homebrew/opt/make/libexec/gnubin" /opt/homebrew/bin /opt/homebrew/sbin $path)
 {{- end }}
-path=($HOME/.local/bin $HOME/bin $path $HOME/.rvm/bin)
+path=($HOME/.local/bin $HOME/bin $path)
 
 {{- if eq .chezmoi.os "darwin" }}
 # Homebrew settings
