@@ -1,6 +1,6 @@
 {{- if eq .chezmoi.os "darwin" }}
 # Set path here again, as `etc/zprofile` on macOS rewrites the order.
 export -TU PATH path
-path=("/usr/local/opt/gnu-getopt/bin" "$/opt/make/libexec/gnubin" ${HOMEBREW_PREFIX}/bin ${HOMEBREW_PREFIX}/sbin $path)
+path=(${ASDF_DATA_DIR}/shims ${HOMEBREW_PREFIX}/bin ${HOMEBREW_PREFIX}/sbin $path)
 path=($HOME/.local/bin $HOME/bin $path)
 {{- end }}

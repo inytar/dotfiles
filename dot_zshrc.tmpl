@@ -30,8 +30,6 @@ alias {{ . | base }}=${HOME}/{{ . }}
 {{- end }}
 {{- end }}
 {{- if eq .email "pieter.mulder@wooga.net" }}
-export NODE_EXTRA_CA_CERTS="/Library/Application Support/Playtika Corp. IT/Certs/Playtika-SCA.pem"
-. ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh
 source ${HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
 source ${HOMEBREW_PREFIX}/opt/chruby/share/chruby/auto.sh
 export GOPATH="${HOME}/go"
@@ -50,3 +48,25 @@ if [ -d {{ .chezmoi.homeDir }}/.zshrc.d ]; then
   done
   unset rc
 fi
+
+
+{{- if eq .email "pieter.mulder@wooga.net" }}
+# Playtika Certificates
+
+# Node.js SSL Certificate Configuration
+export NODE_EXTRA_CA_CERTS='/Library/Certs/Cacert.pem'
+
+# SSL Certificate Configuration for Python
+export CURL_CA_BUNDLE='/Library/Certs/Cacert.pem'
+export REQUESTS_CA_BUNDLE='/Library/Certs/Cacert.pem'
+export SSL_CERT_FILE='/Library/Certs/Cacert.pem'
+
+# YARN SSL Certificate Configuration
+export YARN_CA_FILE='/Library/Certs/Cacert.pem'
+
+# Elixir/Hex SSL Certificate Configuration
+export HEX_CACERTS_PATH='/Library/Certs/Cacert.pem'
+
+# Flutter/Dart SSL Certificate Configuration
+export DART_VM_OPTIONS='--root-certs-file=/Library/Certs/Cacert.pem'
+{{- end }}

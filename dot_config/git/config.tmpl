@@ -24,3 +24,8 @@
 	textconv = lockdiff
 [init]
 	defaultBranch = main
+{{ if eq .email "pieter.mulder@wooga.net" -}}
+[http]
+	sslCAPath = /Library/Certs/Cacert.pem
+	sslCAInfo = /Library/Certs/Cacert.pem
+{{- end }}
