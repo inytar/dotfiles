@@ -7,6 +7,7 @@
 {{- else if ne .chezmoi.os "darwin" }}
 # Ignore if not on MacOS
 .config/kitty
+Library/
 {{- end }}
 {{- if ne .email "pieter.mulder@wooga.net" }}
 # Files to ignore if not working on Company account.
