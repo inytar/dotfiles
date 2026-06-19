@@ -1,0 +1,5 @@
+enabled_layouts tall,stack
+layout tall
+launch --title "claude" claude
+launch --title "vim" --bias 65 vim
+launch --dont-take-focus --bias -20 --title "terminal" zsh

@@ -14,17 +14,6 @@
     extact = true
 {{- end }}
 {{- if eq .chezmoi.os "darwin" }}
-[".iterm2_shell_integration.zsh"]
-    type = "file"
-    url = "https://iterm2.com/shell_integration/zsh"
-    refreshPeriod = "672h"
-[".iterm2"]
-    type = "archive"
-    url = "https://github.com/gnachman/iTerm2-shell-integration/archive/refs/heads/main.zip"
-    include = ["iTerm2-shell-integration-main/utilities/*"]
-    stripComponents = 2
-    extact = true
-    refreshPeriod = "672h"
 {{- end }}
 [".local/share/zim/zimfw.zsh"]
     type = "file"
