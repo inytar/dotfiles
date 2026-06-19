@@ -28,3 +28,7 @@ __pycache__
 
 ## vscode
 .vscode/
+
+## Claude
+CLAUDE.md
+.claude/
