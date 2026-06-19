@@ -8,8 +8,7 @@ fpath=($HOME/.local/share/zsh/site-functions $fpath)
 
 export -TU PATH path
 {{- if eq .chezmoi.os "darwin" }}
-export ASDF_DATA_DIR=/Users/pieter.mulder/.asdf
-path=(${ASDF_DATA_DIR}/shims ${HOMEBREW_PREFIX}/bin ${HOMEBREW_PREFIX}/sbin $path)
+path=(${HOMEBREW_PREFIX}/bin ${HOMEBREW_PREFIX}/sbin $path)
 {{- end }}
 path=($HOME/.local/bin $HOME/bin $path)
 
