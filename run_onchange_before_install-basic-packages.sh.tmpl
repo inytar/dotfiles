@@ -9,10 +9,13 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 {{ end -}}
 {{ if eq .chezmoi.os "darwin" }}
 
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 brew bundle --file=/dev/stdin <<EOF
 brew "vim"
 cask "kitty"
 brew "git"
+brew "gh"
 brew "fzf"
 brew "ripgrep"
 brew "oh-my-posh"
@@ -20,5 +23,15 @@ brew "direnv"
 brew "chruby"
 brew "mise"
 brew "k9s"
+brew "docker/tap/sbx", trusted: true
+brew "fluxcd/tap/flux", trusted: true
+brew "hashicorp/tap/terraform", trusted: true
+brew "helm@3"
+brew "sops"
+brew "kafkactl"
+brew "yq"
+brew "awscli"
+brew "just"
+cask "firefox"
 EOF
 {{ end -}}
