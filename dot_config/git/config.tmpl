@@ -14,10 +14,11 @@
 {{ if eq .email "pietpiet@fastmail.net" -}}
 	signingkey = F3FD6EA89CE6D2946EA9059B66711A6B6D0F8349
 {{- end }}
+{{- if ne .email "pieter.mulder@wooga.net" }}
+{{/* sbx doesn't allow ssh access to github, so just use https. */}}
 [url "ssh://git@github.com/"]
 	pushInsteadOf = https://github.com/
-[url "ssh://git@github.com/wooga"]
-	insteadOf = https://github.com/wooga
+{{- end }}
 [diff "sopsdiffer"]
 	textconv = sops -d
 [diff "lockdiff"]
