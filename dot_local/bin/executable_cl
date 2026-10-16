@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# Start a Claude Code session in an sbx sandbox, configured the way I like it:
+# cloned from the current git repo (or a throwaway sandbox outside one),
+# with the github-ssh, statusline, and auto-theme kits, and medium effort.
+#
+# --kit only takes effect when the sandbox is first created; sbx refuses it
+# outright on an existing one (the auto-theme kit is what sets the theme now,
+# so there's no --settings override left to worry about either). --effort is
+# a claude flag, not a sandbox-creation flag, so it's passed every run
+# regardless. sbx's default sandbox name is "<agent>-<workdir basename>", so
+# compute that name and check `sbx ls` for it up front: if it already
+# exists, reattach by name without --kit, leaving kits/theme as already set
+# (or since changed in-session) alone.
+#
+# Extra args: `cl [sbx-args...] [-- claude-args...]`. Everything before a
+# literal `--` is inserted into the `sbx run` invocation (before the `claude`
+# token); everything after it is appended to the `claude` invocation. Claude
+# args always need the `--` marker, even when no sbx-args precede it (e.g.
+# `cl -- "fix the bug"`) — with no `--` at all, every arg is an sbx-arg and
+# nothing is passed to claude.
+#
+# sbx run itself needs a literal `--` before claude's args, or it tries to
+# parse them as its own flags (e.g. `--effort` → "unknown flag: --effort").
+# Per sbx's merge rule, since the first arg after that `--` is always
+# `--effort` (starts with `-`), our args append to sbx's own default claude
+# invocation instead of replacing it outright (replacement only happens when
+# the first arg after `--` is a bare word, e.g. a prompt).
+set -uo pipefail
+
+args=("$@")
+extra_sbx_args=()
+extra_claude_args=()
+found_dashdash=0
+for arg in "${args[@]}"; do
+  if [ "$found_dashdash" -eq 0 ] && [ "$arg" = "--" ]; then
+    found_dashdash=1
+    continue
+  fi
+  if [ "$found_dashdash" -eq 1 ]; then
+    extra_claude_args+=("$arg")
+  else
+    extra_sbx_args+=("$arg")
+  fi
+done
+
+name="claude-$(basename "$PWD")"
+
+mode=()
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  mode=(--clone)
+else
+  read -r -p "Not inside a git repository. Start a sandbox here anyway (no --clone)? [y/N] " reply
+  case "$reply" in
+    [yY][eE][sS]|[yY]) ;;
+    *) echo "Aborted." >&2; exit 1 ;;
+  esac
+fi
+
+if sbx ls -q | grep -qx "$name"; then
+  exec sbx run --name "$name" "${extra_sbx_args[@]}" claude -- --effort medium "${extra_claude_args[@]}"
+fi
+
+exec sbx run --name "$name" "${mode[@]}" "${extra_sbx_args[@]}" \
+  --kit sbx/github-ssh-kit:latest \
+  --kit "git+https://github.com/inytar/sbx-kits.git#dir=claude-sbx-statusline" \
+  --kit "git+https://github.com/inytar/sbx-kits.git#dir=claude-theme-auto" \
+  claude -- --effort medium "${extra_claude_args[@]}"
